@@ -35,3 +35,22 @@ pom = pd.concat([pom,hist],axis=1)
 
 #saves file to csv
 pom.to_csv("pom.csv",index=False)
+
+#checks the commonly traded stocks in 4 groups prints the data
+pom = pom.sort_values(by="%Chng",ascending = False).reset_index(drop=True)
+final_list = list(pom.loc[0:9,"symbol"])
+pom = pom.sort_values(by="final_quantity",ascending = False).reset_index(drop=True)
+final_list = final_list + list(pom.loc[0:9,"symbol"])
+pom = pom.sort_values(by="%traded",ascending = False).reset_index(drop=True)
+final_list = final_list + list(pom.loc[0:9,"symbol"])
+pom = pom.sort_values(by="value",ascending = False).reset_index(drop=True)
+final_list = final_list + list(pom.loc[0:9,"symbol"])
+from collections import Counter
+symbols = Counter(final_list) 
+top_10 = symbols.most_common(10)
+
+print("\n")
+print(top_10)
+print("\n")
+temp = input("press any key to exit()")
+exit()
