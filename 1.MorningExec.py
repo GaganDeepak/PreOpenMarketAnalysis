@@ -12,7 +12,7 @@ for ind, row in pom.iterrows():
     pom.loc[ind,"%traded"] = (row["value"]/row["cap"])*100
 
 #removes excess data
-pom = pom.drop(['prev_close','final_price','chng','final_quantity'],axis=1)
+pom = pom.drop(['prev_close','final_price','chng'],axis=1)
 
 #create empty dataframe
 hist = pd.DataFrame()
