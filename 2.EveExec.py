@@ -7,6 +7,7 @@ from nsepy import get_history
 pom = pd.read_csv('pom.csv')
 #create empty dataframe
 hist = pd.DataFrame()
+month = date.today().month
 dt = int(input("enter the preopen market date "))
 if dt == date.today().day:
     enddt = dt+1
@@ -15,7 +16,7 @@ else:
 #get the history data for particular date ,change the end day to next day for getting live date data
 for ind, row in pom.iterrows():
     name = row['symbol']
-    hist = hist.append(get_history(symbol = name,start = date(2020,5,dt),end = date(2020,5,enddt)),ignore_index = True)
+    hist = hist.append(get_history(symbol = name,start = date(2020,month,dt),end = date(2020,month,enddt)),ignore_index = True)
     print(row)
 
 #delete the repeated values in history data
